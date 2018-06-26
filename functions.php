@@ -147,14 +147,6 @@ function bannerMaker(){
 }
 
 
-function alt_photo_menu_classes($classes, $item, $args) {
-  if($args->theme_location == 'primary') {
-    $classes[] = 'hvr-underline-from-center';
-  }
-  return $classes;
-}
-add_filter('nav_menu_css_class', 'alt_photo_menu_classes', 1, 3);
-
 /*  <?php 
   $thumbnail_id = get_post_thumbnail_id( $post->ID );
     $alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
