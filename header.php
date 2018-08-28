@@ -41,13 +41,13 @@ $container = get_theme_mod( 'understrap_container_type' );
 							<a class="navbar-brand" rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" itemprop="url">
 								<!--<div class="menu-icon"><i class="fa fa-camera-retro" aria-hidden="true"></i></div>-->
 								<div class="inner-box">
-								<div class="menu-title">
-									<div class="menu-title-one">MAGIC</div>
-									<div class="menu-title-two">PHOTO</div>
-								</div>													
+									<div class="menu-title">
+										<div class="menu-title-one">PHOTO</div>
+										<div class="menu-title-two">MAGIC</div>
+									</div>													
 								<div class="menu-title-three">018</div>
 								<div class="description"><?php echo get_bloginfo('description');?></div>
-							</div>
+								</div>
 							</a>
 
 

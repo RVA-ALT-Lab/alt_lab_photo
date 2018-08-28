@@ -89,6 +89,7 @@ function alt_lab_scripts() {
 if ( function_exists('register_sidebar') )
   register_sidebar(array(
     'name' => 'Footer - far left',
+    'id' => 'footer-far-left',    
     'before_widget' => '<div class = "widgetizedArea">',
     'after_widget' => '</div>',
     'before_title' => '<h3>',
@@ -99,6 +100,7 @@ if ( function_exists('register_sidebar') )
 if ( function_exists('register_sidebar') )
   register_sidebar(array(
     'name' => 'Footer - medium left',
+    'id' => 'footer-med-left',    
     'before_widget' => '<div class = "widgetizedArea">',
     'after_widget' => '</div>',
     'before_title' => '<h3>',
@@ -110,6 +112,7 @@ if ( function_exists('register_sidebar') )
 if ( function_exists('register_sidebar') )
   register_sidebar(array(
     'name' => 'Footer - medium right',
+    'id' => 'footer-med-right',    
     'before_widget' => '<div class = "widgetizedArea">',
     'after_widget' => '</div>',
     'before_title' => '<h3>',
@@ -120,6 +123,7 @@ if ( function_exists('register_sidebar') )
 if ( function_exists('register_sidebar') )
   register_sidebar(array(
     'name' => 'Footer - far right',
+    'id' => 'footer-far-right',
     'before_widget' => '<div class = "widgetizedArea">',
     'after_widget' => '</div>',
     'before_title' => '<h3>',
@@ -129,7 +133,7 @@ if ( function_exists('register_sidebar') )
 
 //set a path for IMGS
 
-  if( !defined(THEME_IMG_PATH)){
+  if( !defined('THEME_IMG_PATH')){
    define( 'THEME_IMG_PATH', get_stylesheet_directory_uri() . '/imgs/' );
   }
 
@@ -152,3 +156,4 @@ function bannerMaker(){
     $alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
    
   the_post_thumbnail( 'full', array( 'alt' => $alt ) ); ?>
+*/

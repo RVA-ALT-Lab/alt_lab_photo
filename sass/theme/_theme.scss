@@ -26,11 +26,11 @@
     position: absolute;
     top: -5px;
     left: -15px;
-    border-top: 4px solid red;
-    border-left: 4px solid red;
+    border-top: 4px solid $photo-red !important;
+    border-left: 4px solid $photo-red !important;
 }
 
-.inner-box:after {
+.inner-box::after {
     display: block;
     content: "";
     width: 20px;
@@ -38,8 +38,12 @@
     position: absolute;
     bottom: 0px;
     right: -15px;
-    border-bottom: 4px solid red;
-    border-right: 4px solid red;
+    border-bottom: 4px solid $photo-red !important;
+    border-right: 4px solid $photo-red !important;
+}
+
+.dropdown-toggle::after {
+  //does toggle icon
 }
 
 .navbar-dark .navbar-toggler-icon {
@@ -68,8 +72,6 @@
 
 .navbar .container {
   background-color: $white;
-  //box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 4px;
-  //border-bottom: 1px solid #e2e2e2;
 }
 
 #main-menu li {
@@ -85,8 +87,7 @@
 
 #main-menu .active {
 	color: $black;
-  border-top: 2px solid $red;
-  //border-bottom: 2px solid $red;
+  border-top: 2px solid $photo-red;
   height: 100%;
 }
 
@@ -127,8 +128,14 @@
   font-size: .7em;
   margin-bottom: 10px;
   color: $black;
-  //border-top: 2px solid $red;
+  //border-top: 2px solid $photo-red;
   padding-top: 5px;
+}
+
+//instagram feed fix 
+
+.apif-masnry-ui-one figure .apif-overlay-cont-block {
+  z-index: 10;
 }
 
 
@@ -145,8 +152,11 @@ body, p, h1, h2, h3, h4, h5 {
 	margin-bottom: 1em;
 }
 
+article img {
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.29);
+}
+
 p {
-	background-color: $white;
 	padding: 1em .4em;
 }
 
@@ -156,6 +166,12 @@ p {
 
 .jumbotron {
 	border-radius: 0;
+}
+
+hr {
+  display: block;
+  clear: both;
+  margin: 50px 0;
 }
 
 .custom-header-img {
@@ -298,7 +314,7 @@ blockquote.default{
   left: 51%;
   right: 51%;
   bottom: 0;
-  background: $red;
+  background: $photo-red;
   height: 2px;
   -webkit-transition-property: left, right;
   transition-property: left, right;
@@ -310,4 +326,30 @@ blockquote.default{
 .hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
   left: 0;
   right: 0;
+}
+
+.entry-content:first-letter {
+  color: #000;
+  display: inline-block;
+  float: left;
+  font: 400 6em/0.5em VF-Didot-3, georgia; //from Vanity Fair page
+  font-style: normal;
+  letter-spacing: 0;
+  margin: 0;
+  padding: 0.16em 0.04em 0 0;
+}
+
+
+.video-responsive{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+}
+.video-responsive iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
 }
