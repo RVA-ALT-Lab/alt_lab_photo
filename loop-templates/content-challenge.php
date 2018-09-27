@@ -18,7 +18,11 @@
 
 		<?php the_content(); ?>
 		<?php echo do_shortcode('[gravityform id="1" title="false" description="false"]'); ?>
-		<?php get_challenges(get_the_title());?>
+		<?php 
+			if (current_user_can('administrator')){
+				get_challenges(get_the_title());
+			}
+			?>
 		<?php
 		wp_link_pages( array(
 			'before' => '<div class="page-links">' . __( 'Pages:', 'understrap' ),

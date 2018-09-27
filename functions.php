@@ -166,9 +166,10 @@ function get_challenges($page){
   );
   $entries  = GFAPI::get_entries( 1, $search_criteria );
  // var_dump($entries);
-      foreach ($entries as $entry) {     
-        $author = $entry['1.3'] . ' ' . $entry['1.4'];
+      foreach ($entries as $entry) {   
+        $date = $entry['date_created'];  
+        $author = $entry['1.3'] . ' ' . $entry['1.6'];
         $album = $entry['3'];
-        echo $author . ' <a href="' . $album . '">album link</a><br>';
+        echo '<div class="challenge-sub">' . $author . ' <a href="' . $album . '">album link</a> ' . $date . '</div>';
   }
 }
