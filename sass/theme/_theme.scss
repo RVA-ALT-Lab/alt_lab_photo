@@ -280,6 +280,23 @@ blockquote.default{
   border-right-color: #434a53;  
 }
 
+.btn-photo {
+  padding: 5px 8px;
+  display: block;
+  background: $photo-red;
+  color: $white;
+  font-size: 1.2em;
+  max-width: 300px;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s;
+}
+
+.btn-photo:hover {
+  background: $dark-gray;
+  color: $white;
+}
+
 
 //BOOTSTRAP BREAKOUT
 

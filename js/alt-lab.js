@@ -29,3 +29,26 @@ for (var i = 0; i < videos.length; i++) {
       wrapper.appendChild(el); // move video into wrapper
 }
 
+//popup album confirmation 
+jQuery(document).bind("gform_confirmation_loaded", function (e, form_id) {
+  console.log('fired');
+  google_album_confirmation();
+});
+
+
+google_album_confirmation();
+
+function google_album_confirmation(){
+  if (document.getElementById('verify-album')){
+    var albumLink = document.getElementById('verify-album');
+    var theUrl = albumLink.getAttribute('href');
+   albumLink.addEventListener("click", function(){gaPopup(theUrl)});
+  }
+}
+
+
+function gaPopup(theUrl){
+  window.open(theUrl,'popup','width=600,height=600');
+  console.log('santiy?');
+}
+
