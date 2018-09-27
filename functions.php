@@ -151,9 +151,24 @@ function bannerMaker(){
 }
 
 
-/*  <?php 
-  $thumbnail_id = get_post_thumbnail_id( $post->ID );
-    $alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
-   
-  the_post_thumbnail( 'full', array( 'alt' => $alt ) ); ?>
-*/
+
+//get challenge submissions from gravity forms
+function get_challenges($page){
+    $search_criteria = array(
+      'status'        => 'active',
+      'field_filters' => array(
+          'mode' => 'any',
+          array(
+              'key'   => '4',
+              'value' => $page
+          ),         
+      )
+  );
+  $entries  = GFAPI::get_entries( 1, $search_criteria );
+ // var_dump($entries);
+      foreach ($entries as $entry) {     
+        $author = $entry['1.3'] . ' ' . $entry['1.4'];
+        $album = $entry['3'];
+        echo $author . ' <a href="' . $album . '">album link</a><br>';
+  }
+}
