@@ -198,7 +198,7 @@ function acf_fetch_daily_challenge_description($tag){
 
     if( $daily_challenge_description) {      
       $html .= '<div class="daily-description challenge">' . $daily_challenge_description . '</div>';  
-      $html .= '<div class="daily-hashtag">The Instagram hashtag for this assignment is <a href="https://www.instagram.com/explore/tags/' . clean_tag($tag) . '">' . $tag . '</a>';  
+      $html .= '<div class="challenge-hashtag">The Instagram hashtag for this assignment is <a href="https://www.instagram.com/explore/tags/' . clean_tag($tag) . '">' . $tag . '</a>';  
      return $html;    
     }
 
@@ -213,7 +213,7 @@ function acf_fetch_weekly_challenge_description($tag){
 
     if( $weekly_challenge_description) {      
       $html .= '<div class="weekly-description challenge">' . $weekly_challenge_description . '</div>'; 
-       $html .= '<div class="daily-hashtag">The Instagram hashtag for this assignment is <a href="https://www.instagram.com/explore/tags/' . clean_tag($tag) . '">' . $tag . '</a>';
+       $html .= '<div class="challenge-hashtag">The Instagram hashtag for this assignment is <a href="https://www.instagram.com/explore/tags/' . clean_tag($tag) . '">' . $tag . '</a>';
      return $html;    
     }
 

@@ -291,6 +291,7 @@ blockquote.default{
   text-decoration: none;
   transition: all .3s;
   margin: 15px 0;
+  font-size: 1em;
 }
 
 .btn-photo:hover {
@@ -388,6 +389,13 @@ blockquote.default{
   text-transform: uppercase;
   font-weight: 800;
   font-size: 3em;
+}
+
+.challenge, .challenge-hashtag {
+  font-size: 1.2em;
+  line-height: 1.8em;
+  font-weight: 300;
+  margin: 20px 0;
 }
 
 
