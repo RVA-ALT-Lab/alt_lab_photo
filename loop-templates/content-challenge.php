@@ -17,32 +17,41 @@
 	<div class="entry-content">
 
 		<?php the_content(); ?>
-		<?php 
-			$daily_tag = acf_fetch_daily_challenge_hashtag();
-			echo acf_fetch_daily_challenge_description($daily_tag);?>
-		<?php		 
-		 	echo challenge_submission_structure($daily_tag);
-		 ?>
-		 <?php 
-			if (current_user_can('administrator')){
-				get_challenges(get_the_title(), $daily_tag);
-			}
-			?>
+		<div class="daily assignment">
+			<?php 
+				$daily_tag = acf_fetch_daily_challenge_hashtag();
+				echo acf_fetch_daily_challenge_description($daily_tag);?>
+			<?php		 
+			 	echo challenge_submission_structure($daily_tag);
+			 ?>
+			 <?php 
+				if (current_user_can('administrator')){
+					echo '<ol>';
+					get_challenges(get_the_title(), $daily_tag);
+					echo '</ol>';
+				}
+				?>
+		</div>
 
-		<?php 
-			$weekly_tag = acf_fetch_weekly_challenge_hashtag();
-			echo acf_fetch_weekly_challenge_description($weekly_tag);
-		?>
-		
-		<?php 
-			echo challenge_submission_structure($weekly_tag);
-		?>
-		 
-		<?php 
-			if (current_user_can('administrator')){
-				get_challenges(get_the_title(), $weekly_tag);
-			}
+
+		<div class="daily assignment">		
+			<?php 
+				$weekly_tag = acf_fetch_weekly_challenge_hashtag();
+				echo acf_fetch_weekly_challenge_description($weekly_tag);
 			?>
+			
+			<?php 
+				echo challenge_submission_structure($weekly_tag);
+			?>
+			 
+			<?php 
+				if (current_user_can('administrator')){
+					echo '<ol>';					
+					get_challenges(get_the_title(), $weekly_tag);
+					echo '</ol>';
+				}
+				?>
+		</div>
 		<?php
 		wp_link_pages( array(
 			'before' => '<div class="page-links">' . __( 'Pages:', 'understrap' ),

@@ -173,7 +173,7 @@ function get_challenges($page, $tag){
         $author = $entry['1.3'] . ' ' . $entry['1.6'];
         $album = $entry['3'];
         $tag = $entry['5'];
-        echo '<div class="challenge-sub"><span class="author">' . $author . '</span><span class="album"> <a href="' . $album . '">album link</a><span class="date"> ' . $date . '</span>' . $tag . '</div>';
+        echo '<li class="challenge-sub"><span class="author">' . $author . '</span><span class="album"> <a href="' . $album . '">album link</a><span class="date"> ' . $date . '</span></li>';
   }
 }
 
