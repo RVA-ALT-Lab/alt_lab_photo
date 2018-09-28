@@ -35,8 +35,9 @@ jQuery(document).bind("gform_confirmation_loaded", function (e, form_id) {
   google_album_confirmation();
 });
 
-
-google_album_confirmation();
+jQuery( document ).ready(function() {
+    google_album_confirmation();
+});
 
 function google_album_confirmation(){
   if (document.getElementById('verify-album')){
@@ -52,3 +53,17 @@ function gaPopup(theUrl){
   console.log('santiy?');
 }
 
+jQuery('#submissionModal').on('show.bs.modal', function (event) {
+  var button = jQuery(event.relatedTarget); // Button that triggered the modal
+  console.log(button.data('tag'));
+  if(button.data('tag')){
+    var tag = button.data('tag'); // Extract info from data-* attributes
+  }
+  var modal = jQuery(this);
+  modal.find('#input_1_6').val(tag);
+})
+
+
+jQuery('#submissionModal').on('hide.bs.modal', function () {
+  location.reload(true);
+});

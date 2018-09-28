@@ -17,20 +17,30 @@
 	<div class="entry-content">
 
 		<?php the_content(); ?>
-		<?php echo acf_fetch_daily_challenge_description();?>
-		<?php
-		 $daily_tag = acf_fetch_daily_challenge_hashtag();
-		 echo challenge_submission_structure($daily_tag);?>
+		<?php 
+			$daily_tag = acf_fetch_daily_challenge_hashtag();
+			echo acf_fetch_daily_challenge_description($daily_tag);?>
+		<?php		 
+		 	echo challenge_submission_structure($daily_tag);
+		 ?>
+		 <?php 
+			if (current_user_can('administrator')){
+				get_challenges(get_the_title(), $daily_tag);
+			}
+			?>
 
-		<?php echo acf_fetch_weekly_challenge_description();?>
+		<?php 
+			$weekly_tag = acf_fetch_weekly_challenge_hashtag();
+			echo acf_fetch_weekly_challenge_description($weekly_tag);
+		?>
 		
 		<?php 
-		$weekly_tag = acf_fetch_weekly_challenge_hashtag();
-		echo challenge_submission_structure($weekly_tag);?>
+			echo challenge_submission_structure($weekly_tag);
+		?>
 		 
 		<?php 
 			if (current_user_can('administrator')){
-				get_challenges(get_the_title(),'foo');
+				get_challenges(get_the_title(), $weekly_tag);
 			}
 			?>
 		<?php

@@ -159,22 +159,21 @@ function get_challenges($page, $tag){
       'field_filters' => array(
           'mode' => 'any',
           array(
-              'key'   => '4',
-              'value' => $page
-          ),    
-          array(
               'key'   => '5',
               'value' => $tag
           ),     
       )
   );
+
+    //'key' => '1', 'operator' => 'contains', 'value' => 'Steve'
   $entries  = GFAPI::get_entries( 1, $search_criteria );
  // var_dump($entries);
       foreach ($entries as $entry) {   
         $date = $entry['date_created'];  
         $author = $entry['1.3'] . ' ' . $entry['1.6'];
         $album = $entry['3'];
-        echo '<div class="challenge-sub"><span class="author">' . $author . '</span><span class="album"> <a href="' . $album . '">album link</a><span class="date"> ' . $date . '</span></div>';
+        $tag = $entry['5'];
+        echo '<div class="challenge-sub"><span class="author">' . $author . '</span><span class="album"> <a href="' . $album . '">album link</a><span class="date"> ' . $date . '</span>' . $tag . '</div>';
   }
 }
 
@@ -191,13 +190,14 @@ function acf_fetch_instagram_shortcode(){
 }
 
 
-function acf_fetch_daily_challenge_description(){
+function acf_fetch_daily_challenge_description($tag){
   global $post;
   $html = '<h2>Daily Challenge</h2>';
   $daily_challenge_description = get_field('daily_challenge_description');
 
     if( $daily_challenge_description) {      
-      $html .= $daily_challenge_description;  
+      $html .= '<div class="daily-description challenge">' . $daily_challenge_description . '</div>';  
+      $html .= '<div class="daily-hashtag">The Instagram hashtag for this assignment is <a href="https://www.instagram.com/explore/tags/' . clean_tag($tag) . '">' . $tag . '</a>';  
      return $html;    
     }
 
@@ -205,13 +205,14 @@ function acf_fetch_daily_challenge_description(){
 
 
 
-function acf_fetch_weekly_challenge_description(){
+function acf_fetch_weekly_challenge_description($tag){
   global $post;
   $html = '<h2>Weekly Challenge</h2>';
   $weekly_challenge_description = get_field('weekly_challenge_description');
 
     if( $weekly_challenge_description) {      
-      $html .= $weekly_challenge_description;  
+      $html .= '<div class="weekly-description challenge">' . $weekly_challenge_description . '</div>'; 
+       $html .= '<div class="daily-hashtag">The Instagram hashtag for this assignment is <a href="https://www.instagram.com/explore/tags/' . clean_tag($tag) . '">' . $tag . '</a>';
      return $html;    
     }
 
@@ -221,7 +222,7 @@ function acf_fetch_weekly_challenge_description(){
 
 function acf_fetch_daily_challenge_hashtag(){
   global $post;
-  $html = '';
+  $html = '<h2>Daily Challenge</h2>';
   $daily_challenge_hashtag = get_field('daily_challenge_hashtag');
 
     if( $daily_challenge_hashtag) {      
@@ -247,12 +248,20 @@ function acf_fetch_weekly_challenge_hashtag(){
 
 
 function challenge_submission_structure($tag){
-  $html  = '<button type="button" class="submit-work" data-toggle="modal" data-target="#submissionModal">Submit Work </button>';
+  $html  = '<button type="button" class="submit-work btn-photo" data-tag="' . $tag . '" data-toggle="modal" data-target="#submissionModal">Submit ' . $tag . ' Work </button>';
   return $html;
 }
 
 
+function clean_tag($tag){
+  $hash = substr($tag,1);
+  if($hash === '#'){
+    return substr($hash,1,strlen($hash));
+  } else {
+    return $hash;
+  }
 
+}
 
 if( function_exists('acf_add_local_field_group') ):
 
