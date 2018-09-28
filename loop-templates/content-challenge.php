@@ -73,7 +73,7 @@
 	      </div>
 	      <div class="modal-body">
 	        <div id="the-person"></div>
-	        <?php echo do_shortcode('[gravityform id="1" title="false" description="false"]');?>
+	        <?php echo do_shortcode('[gravityform id="1" title="false" description="false" ajax="true"]');?>
 	      </div>
 	      <div class="modal-footer">        
 	      </div>

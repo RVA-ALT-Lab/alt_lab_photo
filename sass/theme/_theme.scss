@@ -281,15 +281,16 @@ blockquote.default{
 }
 
 .btn-photo {
-  padding: 5px 8px;
+  padding: 5px 10px;
   display: block;
   background: $photo-red;
   color: $white;
   font-size: 1.2em;
-  max-width: 300px;
+  width: 320px;
   text-align: center;
   text-decoration: none;
   transition: all .3s;
+  margin: 15px 0;
 }
 
 .btn-photo:hover {

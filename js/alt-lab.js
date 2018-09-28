@@ -65,5 +65,6 @@ jQuery('#submissionModal').on('show.bs.modal', function (event) {
 
 
 jQuery('#submissionModal').on('hide.bs.modal', function () {
+  console.log('refresh triggered');
   location.reload(true);
 });
