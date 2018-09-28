@@ -188,6 +188,7 @@ hr {
 	background-position: right;
 	background-size: 400px 800px;
 	background-attachment: fixed;
+  background-color: rgba(202,202,202,.1);
 }
 
 
@@ -403,4 +404,9 @@ blockquote.default{
 #closer {
     text-align: right;
     padding: 10px;
+    font-weight: 100;
+}
+
+input {
+  border: 1px solid $dark-gray;
 }
