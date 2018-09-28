@@ -153,7 +153,7 @@ function bannerMaker(){
 
 
 //get challenge submissions from gravity forms
-function get_challenges($page){
+function get_challenges($page, $tag){
     $search_criteria = array(
       'status'        => 'active',
       'field_filters' => array(
@@ -161,7 +161,11 @@ function get_challenges($page){
           array(
               'key'   => '4',
               'value' => $page
-          ),         
+          ),    
+          array(
+              'key'   => '5',
+              'value' => $tag
+          ),     
       )
   );
   $entries  = GFAPI::get_entries( 1, $search_criteria );
@@ -170,7 +174,7 @@ function get_challenges($page){
         $date = $entry['date_created'];  
         $author = $entry['1.3'] . ' ' . $entry['1.6'];
         $album = $entry['3'];
-        echo '<div class="challenge-sub">' . $author . ' <a href="' . $album . '">album link</a> ' . $date . '</div>';
+        echo '<div class="challenge-sub"><span class="author">' . $author . '</span><span class="album"> <a href="' . $album . '">album link</a><span class="date"> ' . $date . '</span></div>';
   }
 }
 
@@ -187,3 +191,169 @@ function acf_fetch_instagram_shortcode(){
 }
 
 
+function acf_fetch_daily_challenge_description(){
+  global $post;
+  $html = '<h2>Daily Challenge</h2>';
+  $daily_challenge_description = get_field('daily_challenge_description');
+
+    if( $daily_challenge_description) {      
+      $html .= $daily_challenge_description;  
+     return $html;    
+    }
+
+}
+
+
+
+function acf_fetch_weekly_challenge_description(){
+  global $post;
+  $html = '<h2>Weekly Challenge</h2>';
+  $weekly_challenge_description = get_field('weekly_challenge_description');
+
+    if( $weekly_challenge_description) {      
+      $html .= $weekly_challenge_description;  
+     return $html;    
+    }
+
+}
+
+
+
+function acf_fetch_daily_challenge_hashtag(){
+  global $post;
+  $html = '';
+  $daily_challenge_hashtag = get_field('daily_challenge_hashtag');
+
+    if( $daily_challenge_hashtag) {      
+      $html = $daily_challenge_hashtag;  
+     return $html;    
+    }
+
+}
+
+
+
+function acf_fetch_weekly_challenge_hashtag(){
+  global $post;
+  $html = '';
+  $weekly_challenge_hashtag = get_field('weekly_challenge_hashtag');
+
+    if( $weekly_challenge_hashtag) {      
+      $html = $weekly_challenge_hashtag;  
+     return $html;    
+    }
+
+}
+
+
+function challenge_submission_structure($tag){
+  $html  = '<button type="button" class="submit-work" data-toggle="modal" data-target="#submissionModal">Submit Work </button>';
+  return $html;
+}
+
+
+
+
+if( function_exists('acf_add_local_field_group') ):
+
+acf_add_local_field_group(array (
+  'key' => 'group_5bad11c686e33',
+  'title' => 'Challenge',
+  'fields' => array (
+    array (
+      'key' => 'field_5bad8061e7431',
+      'label' => 'Daily Challenge Description',
+      'name' => 'daily_challenge_description',
+      'type' => 'textarea',
+      'instructions' => '',
+      'required' => 0,
+      'conditional_logic' => 0,
+      'wrapper' => array (
+        'width' => '',
+        'class' => '',
+        'id' => '',
+      ),
+      'default_value' => '',
+      'placeholder' => '',
+      'maxlength' => '',
+      'rows' => '',
+      'new_lines' => '',
+    ),
+    array (
+      'key' => 'field_5bad809672840',
+      'label' => 'Daily Challenge Hashtag',
+      'name' => 'daily_challenge_hashtag',
+      'type' => 'text',
+      'instructions' => '',
+      'required' => 0,
+      'conditional_logic' => 0,
+      'wrapper' => array (
+        'width' => '',
+        'class' => '',
+        'id' => '',
+      ),
+      'default_value' => '',
+      'placeholder' => '',
+      'prepend' => '',
+      'append' => '',
+      'maxlength' => '',
+    ),
+    array (
+      'key' => 'field_5bad807cb3964',
+      'label' => 'Weekly Challenge Description',
+      'name' => 'weekly_challenge_description',
+      'type' => 'textarea',
+      'instructions' => '',
+      'required' => 0,
+      'conditional_logic' => 0,
+      'wrapper' => array (
+        'width' => '',
+        'class' => '',
+        'id' => '',
+      ),
+      'default_value' => '',
+      'placeholder' => '',
+      'maxlength' => '',
+      'rows' => '',
+      'new_lines' => '',
+    ),
+    array (
+      'key' => 'field_5bad80a0b287b',
+      'label' => 'Weekly Challenge Hashtag',
+      'name' => 'weekly_challenge_hashtag',
+      'type' => 'text',
+      'instructions' => '',
+      'required' => 0,
+      'conditional_logic' => 0,
+      'wrapper' => array (
+        'width' => '',
+        'class' => '',
+        'id' => '',
+      ),
+      'default_value' => '',
+      'placeholder' => '',
+      'prepend' => '',
+      'append' => '',
+      'maxlength' => '',
+    ),
+  ),
+  'location' => array (
+    array (
+      array (
+        'param' => 'page_template',
+        'operator' => '==',
+        'value' => 'page-templates/challenge.php',
+      ),
+    ),
+  ),
+  'menu_order' => 0,
+  'position' => 'normal',
+  'style' => 'default',
+  'label_placement' => 'top',
+  'instruction_placement' => 'label',
+  'hide_on_screen' => '',
+  'active' => 1,
+  'description' => '',
+));
+
+endif;

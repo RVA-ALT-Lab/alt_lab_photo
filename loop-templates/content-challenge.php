@@ -17,17 +17,20 @@
 	<div class="entry-content">
 
 		<?php the_content(); ?>
-		 <a class="btn btn-primary" data-toggle="collapse" href="#submitWork" role="button" aria-expanded="false" aria-controls="collapseExample">
-		   Submit Work
-		  </a>		
-		  <div class="collapse" id="submitWork">
-  			<div class="card card-body">
-				<?php echo do_shortcode('[gravityform id="1" title="false"  field_values="tag=foo" description="false"]'); ?>
-			</div>
-		</div>
+		<?php echo acf_fetch_daily_challenge_description();?>
+		<?php
+		 $daily_tag = acf_fetch_daily_challenge_hashtag();
+		 echo challenge_submission_structure($daily_tag);?>
+
+		<?php echo acf_fetch_weekly_challenge_description();?>
+		
+		<?php 
+		$weekly_tag = acf_fetch_weekly_challenge_hashtag();
+		echo challenge_submission_structure($weekly_tag);?>
+		 
 		<?php 
 			if (current_user_can('administrator')){
-				get_challenges(get_the_title());
+				get_challenges(get_the_title(),'foo');
 			}
 			?>
 		<?php
@@ -38,6 +41,27 @@
 		?>
 
 	</div><!-- .entry-content -->
+
+	<!--CONTACT Modal -->
+	<div class="modal fade" id="submissionModal" tabindex="-1" role="dialog" aria-labelledby="submitWork" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <button type="button" class="close" data-dismiss="modal" id="closer" aria-label="Close">
+	          <span aria-hidden="true">Close <span class="close-x">X</span></span>
+	        </button>
+	      <div class="modal-header">
+	        <h2 class="modal-title" id="submitWork">Submit Work</h2>       
+	      </div>
+	      <div class="modal-body">
+	        <div id="the-person"></div>
+	        <?php echo do_shortcode('[gravityform id="1" title="false" description="false"]');?>
+	      </div>
+	      <div class="modal-footer">        
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	    <!-- END Modal -->
 
 	<footer class="entry-footer">
 
