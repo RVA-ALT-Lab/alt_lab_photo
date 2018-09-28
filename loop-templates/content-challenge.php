@@ -24,13 +24,15 @@
 			<?php		 
 			 	echo challenge_submission_structure($daily_tag);
 			 ?>
-			 <?php 
-				if (current_user_can('administrator')){
-					echo '<ol>';
-					get_challenges(get_the_title(), $daily_tag);
-					echo '</ol>';
-				}
-				?>
+			 <div class="submitted-work">
+				 <?php 
+					if (current_user_can('administrator')){
+						echo '<h3>Submitted Work</h3><ol>';
+						get_challenges(get_the_title(), $daily_tag);
+						echo '</ol>';
+					}
+					?>
+			</div>
 		</div>
 
 
@@ -43,14 +45,15 @@
 			<?php 
 				echo challenge_submission_structure($weekly_tag);
 			?>
-			 
-			<?php 
-				if (current_user_can('administrator')){
-					echo '<ol>';					
-					get_challenges(get_the_title(), $weekly_tag);
-					echo '</ol>';
-				}
-				?>
+			 <div class="submitted-work">			 
+				<?php 
+					if (current_user_can('administrator')){
+						echo '<h3>Submitted Work</h3><ol>';					
+						get_challenges(get_the_title(), $weekly_tag);
+						echo '</ol>';
+					}
+					?>
+			 </div>
 		</div>
 		<?php
 		wp_link_pages( array(

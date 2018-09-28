@@ -171,9 +171,10 @@ function get_challenges($page, $tag){
       foreach ($entries as $entry) {   
         $date = $entry['date_created'];  
         $author = $entry['1.3'] . ' ' . $entry['1.6'];
+        $email = $entry['2'];
         $album = $entry['3'];
         $tag = $entry['5'];
-        echo '<li class="challenge-sub"><span class="author">' . $author . '</span><span class="album"> <a href="' . $album . '">album link</a><span class="date"> ' . $date . '</span></li>';
+        echo '<li class="challenge-sub"><span class="author"><a href="mailto:' . $email . '">' . $author . '</a></span><span class="album"> <a href="' . $album . '">album link</a><span class="date"> ' . $date . '</span></li>';
   }
 }
 

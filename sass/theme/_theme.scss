@@ -372,7 +372,27 @@ blockquote.default{
     position:absolute;
 }
 
+
+//CHALLENGE PAGE
 .assignment {
   margin-top: 50px;
   display: block;
+}
+
+.submitted-work {
+  padding: 20px;
+  background-color: $light-gray;
+}
+
+.entry-title {
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 3em;
+}
+
+
+//modal 
+#closer {
+    text-align: right;
+    padding: 10px;
 }
