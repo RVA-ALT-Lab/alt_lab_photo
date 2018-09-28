@@ -17,7 +17,14 @@
 	<div class="entry-content">
 
 		<?php the_content(); ?>
-		<?php echo do_shortcode('[gravityform id="1" title="false" description="false"]'); ?>
+		 <a class="btn btn-primary" data-toggle="collapse" href="#submitWork" role="button" aria-expanded="false" aria-controls="collapseExample">
+		   Submit Work
+		  </a>		
+		  <div class="collapse" id="submitWork">
+  			<div class="card card-body">
+				<?php echo do_shortcode('[gravityform id="1" title="false"  field_values="tag=foo" description="false"]'); ?>
+			</div>
+		</div>
 		<?php 
 			if (current_user_can('administrator')){
 				get_challenges(get_the_title());

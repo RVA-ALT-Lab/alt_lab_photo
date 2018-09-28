@@ -173,3 +173,17 @@ function get_challenges($page){
         echo '<div class="challenge-sub">' . $author . ' <a href="' . $album . '">album link</a> ' . $date . '</div>';
   }
 }
+
+
+function acf_fetch_instagram_shortcode(){
+  global $post;
+  $html = '';
+  $instagram_shortcode = get_field('instagram_shortcode');
+
+    if( $instagram_shortcode) {      
+      return $instagram_shortcode;  
+    }
+
+}
+
+

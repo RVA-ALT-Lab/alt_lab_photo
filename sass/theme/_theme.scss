@@ -345,7 +345,7 @@ blockquote.default{
   right: 0;
 }
 
-.entry-content:first-letter {
+.entry-content p:first-letter {
   color: #000;
   display: inline-block;
   float: left;
