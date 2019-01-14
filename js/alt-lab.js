@@ -60,11 +60,10 @@ jQuery('#submissionModal').on('show.bs.modal', function (event) {
     var tag = button.data('tag'); // Extract info from data-* attributes
   }
   var modal = jQuery(this);
-  modal.find('#input_1_6').val(tag);
+  modal.find('#input_1_5').val(tag);
 })
 
 
 jQuery('#submissionModal').on('hide.bs.modal', function () {
-  console.log('refresh triggered');
   location.reload(true);
 });

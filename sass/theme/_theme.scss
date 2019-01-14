@@ -26,11 +26,11 @@
     position: absolute;
     top: -5px;
     left: -15px;
-    border-top: 4px solid $photo-red !important;
-    border-left: 4px solid $photo-red !important;
+    border-top: 4px solid red;
+    border-left: 4px solid red;
 }
 
-.inner-box::after {
+.inner-box:after {
     display: block;
     content: "";
     width: 20px;
@@ -38,12 +38,8 @@
     position: absolute;
     bottom: 0px;
     right: -15px;
-    border-bottom: 4px solid $photo-red !important;
-    border-right: 4px solid $photo-red !important;
-}
-
-.dropdown-toggle::after {
-  //does toggle icon
+    border-bottom: 4px solid red;
+    border-right: 4px solid red;
 }
 
 .navbar-dark .navbar-toggler-icon {
@@ -72,6 +68,8 @@
 
 .navbar .container {
   background-color: $white;
+  //box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 4px;
+  //border-bottom: 1px solid #e2e2e2;
 }
 
 #main-menu li {
@@ -87,7 +85,8 @@
 
 #main-menu .active {
 	color: $black;
-  border-top: 2px solid $photo-red;
+  border-top: 2px solid $red;
+  //border-bottom: 2px solid $red;
   height: 100%;
 }
 
@@ -128,14 +127,8 @@
   font-size: .7em;
   margin-bottom: 10px;
   color: $black;
-  //border-top: 2px solid $photo-red;
+  //border-top: 2px solid $red;
   padding-top: 5px;
-}
-
-//instagram feed fix 
-
-.apif-masnry-ui-one figure .apif-overlay-cont-block {
-  z-index: 10;
 }
 
 
@@ -152,11 +145,8 @@ body, p, h1, h2, h3, h4, h5 {
 	margin-bottom: 1em;
 }
 
-article img {
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,.29);
-}
-
 p {
+	background-color: $white;
 	padding: 1em .4em;
 }
 
@@ -168,12 +158,6 @@ p {
 	border-radius: 0;
 }
 
-hr {
-  display: block;
-  clear: both;
-  margin: 50px 0;
-}
-
 .custom-header-img {
 	height: 40vw;
 	background-position: center;
@@ -181,14 +165,87 @@ hr {
 	background-size: cover;
 }
 
-//BACKGROUND
-#full-width-page-wrapper {
-//	background-image: url(../imgs/topo-right-30.png);
-	background-repeat: no-repeat;
-	background-position: right;
-	background-size: 400px 800px;
-	background-attachment: fixed;
-  background-color: rgba(202,202,202,.1);
+.entry-title {
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 3em;
+}
+
+#full-width-page-wrapper, p{
+    background-color: #fbfafa;
+}
+
+.btn-photo{
+    padding: 5px 10px;
+    display: block;
+    background: #bd091a;
+    color: #fff;
+    font-size: 1.2em;
+    width: 320px;
+    text-align: center;
+    text-decoration: none;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    margin: 15px 0;
+    font-size: 1em;
+  }
+
+  #closer {
+    text-align: right;
+    padding: 10px;
+    font-weight: 100;
+}
+
+//tutorials and artists
+
+.tutorial {
+    border-bottom: .1rem solid #e0e0e0;    
+}
+
+.tutorial-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: inline-block;
+  //background-color: $red;
+  border: 2px solid $red;
+  margin-right: 20px;
+  margin-top: 20px;
+  vertical-align: top;
+}
+
+.tutorial-words h3 {
+    letter-spacing: .01785714em;
+    font-family: 'Google Sans',Roboto,Arial,sans-serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 2rem;
+    color: #3c4043;
+    display: inline-block;
+    max-width: 80%;
+}
+
+.tutorial-words {
+  display: inline-block;
+  max-width: 90%;
+  padding-top: 20px;
+  margin: 0 auto;
+}
+
+.artist p, .tutorial p {
+  margin-left: 0;
+  padding-left: 0;
+  padding-top: 0;
+}
+
+.artist-img img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
+#challenges {
+  margin-top: 70px;
 }
 
 
@@ -281,25 +338,6 @@ blockquote.default{
   border-right-color: #434a53;  
 }
 
-.btn-photo {
-  padding: 5px 10px;
-  display: block;
-  background: $photo-red;
-  color: $white;
-  font-size: 1.2em;
-  width: 320px;
-  text-align: center;
-  text-decoration: none;
-  transition: all .3s;
-  margin: 15px 0;
-  font-size: 1em;
-}
-
-.btn-photo:hover {
-  background: $dark-gray;
-  color: $white;
-}
-
 
 //BOOTSTRAP BREAKOUT
 
@@ -334,7 +372,7 @@ blockquote.default{
   left: 51%;
   right: 51%;
   bottom: 0;
-  background: $photo-red;
+  background: $red;
   height: 2px;
   -webkit-transition-property: left, right;
   transition-property: left, right;
@@ -346,67 +384,4 @@ blockquote.default{
 .hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
   left: 0;
   right: 0;
-}
-
-.entry-content p:first-letter {
-  color: #000;
-  display: inline-block;
-  float: left;
-  font: 400 6em/0.5em VF-Didot-3, georgia; //from Vanity Fair page
-  font-style: normal;
-  letter-spacing: 0;
-  margin: 0;
-  padding: 0.16em 0.04em 0 0;
-}
-
-
-.video-responsive{
-    overflow:hidden;
-    padding-bottom:56.25%;
-    position:relative;
-    height:0;
-}
-.video-responsive iframe{
-    left:0;
-    top:0;
-    height:100%;
-    width:100%;
-    position:absolute;
-}
-
-
-//CHALLENGE PAGE
-.assignment {
-  margin-top: 50px;
-  display: block;
-}
-
-.submitted-work {
-  padding: 20px;
-  background-color: $light-gray;
-}
-
-.entry-title {
-  text-transform: uppercase;
-  font-weight: 800;
-  font-size: 3em;
-}
-
-.challenge, .challenge-hashtag {
-  font-size: 1.2em;
-  line-height: 1.8em;
-  font-weight: 300;
-  margin: 20px 0;
-}
-
-
-//modal 
-#closer {
-    text-align: right;
-    padding: 10px;
-    font-weight: 100;
-}
-
-input {
-  border: 1px solid $dark-gray;
 }

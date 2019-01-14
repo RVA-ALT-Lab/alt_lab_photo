@@ -17,6 +17,15 @@
 	<div class="entry-content">
 
 		<?php the_content(); ?>
+
+		<!--should be repeater field with artist, paragraph statement saying why they matter, maybe repeater field of URLs to their sites/videos etc. -->
+		<?php get_the_artists();?>
+
+		<?php get_the_tutorials();?>
+		<!--should be repeater field with title, concept, link -->
+
+
+		<h2 id="challenges" class="magic-topics"></h2>
 		<div class="daily assignment">
 			<?php 
 				$daily_tag = acf_fetch_daily_challenge_hashtag();
@@ -24,18 +33,16 @@
 			<?php		 
 			 	echo challenge_submission_structure($daily_tag);
 			 ?>
-
+			<?php echo do_shortcode('[elfsight_instagram_feed source="' . acf_fetch_daily_challenge_hashtag_tag() . '" limit="16" widget_title=""]')?>
 				 <?php 
 					if (current_user_can('administrator')){
-						echo '<div class="submitted-work"><h3>Submitted Work</h3><ol>';
 						get_challenges(get_the_title(), $daily_tag);
-						echo '</ol></div>';
 					}
 					?>
 		</div>
 
 
-		<div class="daily assignment">		
+		<div class="weekly assignment">		
 			<?php 
 				$weekly_tag = acf_fetch_weekly_challenge_hashtag();
 				echo acf_fetch_weekly_challenge_description($weekly_tag);
@@ -44,6 +51,8 @@
 			<?php 
 				echo challenge_submission_structure($weekly_tag);
 			?>
+
+			<?php echo do_shortcode('[elfsight_instagram_feed source="' . acf_fetch_weekly_challenge_hashtag() . '" limit="16" widget_title=""]')?>				
 					 
 				<?php 
 					if (current_user_can('administrator')){
