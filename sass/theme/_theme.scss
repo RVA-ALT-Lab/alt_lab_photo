@@ -214,7 +214,7 @@ p {
   vertical-align: top;
 }
 
-.tutorial-words h3 {
+.tutorial-title {
     letter-spacing: .01785714em;
     font-family: 'Google Sans',Roboto,Arial,sans-serif;
     font-size: 1.4rem;
@@ -223,6 +223,27 @@ p {
     color: #3c4043;
     display: inline-block;
     max-width: 80%;
+    margin-top: 20px;
+     -webkit-transition: all .5s; /* Safari */
+  transition: all .5s;
+}
+
+.tutorial-title h3 {
+  display: inline-block;
+}
+
+.tutorial-title[aria-expanded="true"]::after  {
+  content: ' -';
+  display: inline-block;
+  font-size: 1.2em;
+  margin-left: 20px;
+}
+
+.tutorial-title[aria-expanded="false"]::after  {
+  content: ' +';
+  display: inline-block;
+  font-size: 1.2em;
+  margin-left: 20px;
 }
 
 .tutorial-words {
@@ -244,8 +265,23 @@ p {
   object-fit: cover;
 }
 
+
+//challenges
 #challenges {
   margin-top: 70px;
+}
+
+.main-hashtag {
+  display: inline-block;
+  padding: 15px 20px;
+  background-color: $red;
+  color: #fff;
+  font-size: 2em;
+  font-weight: 100;
+  position: fixed;
+  top: 50%;
+  right: 0;
+  z-index: 500;
 }
 
 

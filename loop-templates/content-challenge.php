@@ -11,6 +11,14 @@
 	<header class="entry-header">
 
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+		<div class="main-hashtag"><?php 
+		if (acf_fetch_daily_challenge_hashtag()) {
+			echo acf_fetch_daily_challenge_hashtag();
+		} else {
+			echo acf_fetch_daily_challenge_hashtag();	
+		}
+		;?>		
+		</div>
 
 	</header><!-- .entry-header -->
 
@@ -56,9 +64,7 @@
 					 
 				<?php 
 					if (current_user_can('administrator')){
-						echo ' <div class="submitted-work">	<h3>Submitted Work</h3><ol>';					
 						get_challenges(get_the_title(), $weekly_tag);
-						echo '</ol></div>';
 					}
 					?>
 		</div>

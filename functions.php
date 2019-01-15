@@ -167,7 +167,7 @@ function get_challenges($page, $tag){
 
     //'key' => '1', 'operator' => 'contains', 'value' => 'Steve'
   $entries  = GFAPI::get_entries( 1, $search_criteria );
-  if ( $entries ){
+  if ( !empty($entries) ){
  // var_dump($entries);
       echo '<div class="submitted-work"><h3>Submitted Work</h3><ol>';
         foreach ($entries as $entry) {   
@@ -197,12 +197,13 @@ function acf_fetch_instagram_shortcode(){
 
 function acf_fetch_daily_challenge_description($tag){
   global $post;
-  $html = '<h2>Daily Challenge</h2>';
+   $tag = clean_tag($tag);
+  $html = '<h2>Daily Practice</h2>';
   $daily_challenge_description = get_field('daily_challenge_description');
 
     if( $daily_challenge_description) {      
       $html .= '<div class="daily-description challenge">' . $daily_challenge_description . '</div>';  
-      $html .= '<div class="challenge-hashtag">The Instagram hashtag for this assignment is <a href="https://www.instagram.com/explore/tags/' . clean_tag($tag) . '">' . $tag . '</a>';  
+      $html .= '<div class="challenge-hashtag">The Instagram hashtag for this assignment is <a href="https://www.instagram.com/explore/tags/' . $tag . '">#' . $tag . '</a>';  
      return $html;    
     }
 
@@ -212,12 +213,13 @@ function acf_fetch_daily_challenge_description($tag){
 
 function acf_fetch_weekly_challenge_description($tag){
   global $post;
-  $html = '<h2>Weekly Challenge</h2>';
+  $tag = clean_tag($tag);
+  $html = '<h2>Weekly Assignment</h2>';
   $weekly_challenge_description = get_field('weekly_challenge_description');
 
     if( $weekly_challenge_description) {      
       $html .= '<div class="weekly-description challenge">' . $weekly_challenge_description . '</div>'; 
-       $html .= '<div class="challenge-hashtag">The Instagram hashtag for this assignment is <a href="https://www.instagram.com/explore/tags/' . clean_tag($tag) . '">' . $tag . '</a>';
+       $html .= '<div class="challenge-hashtag">The Instagram hashtag for this assignment is <a href="https://www.instagram.com/explore/tags/' . $tag . '">#' . $tag . '</a>';
      return $html;    
     }
 
@@ -227,7 +229,7 @@ function acf_fetch_weekly_challenge_description($tag){
 
 function acf_fetch_daily_challenge_hashtag(){
   global $post;
-  $html = '<h2>Daily Challenge</h2>';
+  $html = '<h2>Daily Practice</h2>';
   $daily_challenge_hashtag = get_field('daily_challenge_hashtag');
 
     if( $daily_challenge_hashtag) {      
@@ -268,19 +270,20 @@ function acf_fetch_daily_challenge_hashtag_tag(){
 }
 
 function challenge_submission_structure($tag){
-  $html  = '<button type="button" class="submit-work btn-photo" data-tag="' . $tag . '" data-toggle="modal" data-target="#submissionModal">Submit ' . $tag . ' Work </button>';
-  return $html;
+  if($tag){
+    $html  = '<button type="button" class="submit-work btn-photo" data-tag="' . $tag . '" data-toggle="modal" data-target="#submissionModal">Submit ' . $tag . ' Work </button>';
+    return $html;
+  }
 }
 
 
 function clean_tag($tag){
-  $hash = substr($tag,1);
-  if($hash === '#'){
-    return substr($hash,1,strlen($hash));
+  $hash = substr($tag,0,1);
+  if($hash == '#'){
+    return substr($tag,1,strlen($tag));
   } else {
     return $tag;
   }
-
 }
 
 
@@ -315,16 +318,16 @@ function get_the_tutorials(){
   if( have_rows('tutorials') ):
 
     // loop through the rows of data
-    echo '<h2 id="tutorials" class="magic-topics">Tutorials</h2>';
+    echo '<h2 id="tutorials" class="magic-topics">Tutorials & Resources</h2>';
     echo '<div class="row tutorial-box">';
       while ( have_rows('tutorials') ) : the_row();
-
+          $clean_title = sanitize_title_with_dashes(get_sub_field('tutorial_title'));
           // display a sub field value
           echo '<div class="tutorial col-md-9">';
           echo '<div class="tutorial-icon"></div>';
-          echo '<div class="tutorial-words"><h3>' . get_sub_field('tutorial_title') . '</h3>';
-          echo  get_sub_field('tutorial_description');
-          echo '</div></div>';
+          echo collapseButton(get_sub_field('tutorial_title'));
+          echo  '<div class="collapse" id="' . $clean_title . '">' . get_sub_field('tutorial_description') . '</div>';
+          echo '</div>';
 
       endwhile;
     echo '</div>';
@@ -336,6 +339,14 @@ function get_the_tutorials(){
   endif;
 }
 
+
+function collapseButton($title){
+  $clean_title = sanitize_title_with_dashes($title);
+  return '<a data-toggle="collapse" class="tutorial-title" href="#' . $clean_title . '" role="button" aria-expanded="false" aria-controls="' . $clean_title . '"><h3>' . $title . ' </h3></a>';
+}
+// <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+//     Link with href
+//   </a>
 
 
 // if( function_exists('acf_add_local_field_group') ):
