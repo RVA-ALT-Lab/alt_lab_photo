@@ -272,16 +272,10 @@ p {
 }
 
 .main-hashtag {
-  display: inline-block;
-  padding: 15px 20px;
-  background-color: $red;
-  color: #fff;
-  font-size: 2em;
-  font-weight: 100;
-  position: fixed;
-  top: 50%;
-  right: 0;
-  z-index: 500;
+    display: block;
+    font-size: 3em;
+    font-weight: 100;
+    text-decoration: none;
 }
 
 
@@ -420,4 +414,9 @@ blockquote.default{
 .hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
   left: 0;
   right: 0;
+}
+
+//MOBILE LAND
+@media only screen and (max-width: 600px) {
+
 }

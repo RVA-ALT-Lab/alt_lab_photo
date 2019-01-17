@@ -45,7 +45,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 										<div class="menu-title-one">PHOTO</div>
 										<div class="menu-title-two">MAGIC</div>
 									</div>													
-								<div class="menu-title-three">018</div>
+								<div class="menu-title-three">019</div>
 								<div class="description"><?php echo get_bloginfo('description');?></div>
 								</div>
 							</a>

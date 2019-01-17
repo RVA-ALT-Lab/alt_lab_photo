@@ -10,15 +10,7 @@
 
 	<header class="entry-header">
 
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-		<div class="main-hashtag"><?php 
-		if (acf_fetch_daily_challenge_hashtag()) {
-			echo acf_fetch_daily_challenge_hashtag();
-		} else {
-			echo acf_fetch_daily_challenge_hashtag();	
-		}
-		;?>		
-		</div>
+		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>		
 
 	</header><!-- .entry-header -->
 
