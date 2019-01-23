@@ -350,13 +350,13 @@ function collapseButton($title){
 function get_the_vocab_words(){
     global $post;
     if( have_rows('vocabulary_bank', $post->ID) ):
-        $html = '<h2 class="alt-dictionary-title">Terms</h2><div class="alt-dictionary">';
+        $html = '<h2 class="alt-dictionary-title magic-topics">Terms</h2><div class="row tutorial-box"><div class="alt-dictionary col-md-9">';
     while ( have_rows('vocabulary_bank') ) : the_row();
         // Your loop code
       $html .= '<button type="button" class="dictionary">' . get_sub_field('target_language_word');
       $html .= '<span class="tooltip tip-top" role="tooltip">' . get_sub_field('english_equivalent') . '</span></button>';
     endwhile;
-      $html .=  '</div>';
+      $html .=  '</div></div>';
     else :
         // no rows found
     endif;
