@@ -344,111 +344,140 @@ function collapseButton($title){
   $clean_title = sanitize_title_with_dashes($title);
   return '<a data-toggle="collapse" class="tutorial-title" href="#' . $clean_title . '" role="button" aria-expanded="false" aria-controls="' . $clean_title . '"><h3>' . $title . ' </h3></a>';
 }
-// <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-//     Link with href
-//   </a>
+
+//Vocab
+
+function get_the_vocab_words(){
+    global $post;
+    if( have_rows('vocabulary_bank', $post->ID) ):
+        $html = '<h2 class="alt-dictionary-title">Terms</h2><div class="alt-dictionary">';
+    while ( have_rows('vocabulary_bank') ) : the_row();
+        // Your loop code
+      $html .= '<button type="button" class="dictionary">' . get_sub_field('target_language_word');
+      $html .= '<span class="tooltip tip-top" role="tooltip">' . get_sub_field('english_equivalent') . '</span></button>';
+    endwhile;
+      $html .=  '</div>';
+    else :
+        // no rows found
+    endif;
+    return $html;
+}
 
 
-// if( function_exists('acf_add_local_field_group') ):
 
-// acf_add_local_field_group(array (
-//   'key' => 'group_5bad11c686e33',
-//   'title' => 'Challenge',
-//   'fields' => array (
-//     array (
-//       'key' => 'field_5bad8061e7431',
-//       'label' => 'Daily Challenge Description',
-//       'name' => 'daily_challenge_description',
-//       'type' => 'textarea',
-//       'instructions' => '',
-//       'required' => 0,
-//       'conditional_logic' => 0,
-//       'wrapper' => array (
-//         'width' => '',
-//         'class' => '',
-//         'id' => '',
-//       ),
-//       'default_value' => '',
-//       'placeholder' => '',
-//       'maxlength' => '',
-//       'rows' => '',
-//       'new_lines' => '',
-//     ),
-//     array (
-//       'key' => 'field_5bad809672840',
-//       'label' => 'Daily Challenge Hashtag',
-//       'name' => 'daily_challenge_hashtag',
-//       'type' => 'text',
-//       'instructions' => '',
-//       'required' => 0,
-//       'conditional_logic' => 0,
-//       'wrapper' => array (
-//         'width' => '',
-//         'class' => '',
-//         'id' => '',
-//       ),
-//       'default_value' => '',
-//       'placeholder' => '',
-//       'prepend' => '',
-//       'append' => '',
-//       'maxlength' => '',
-//     ),
-//     array (
-//       'key' => 'field_5bad807cb3964',
-//       'label' => 'Weekly Challenge Description',
-//       'name' => 'weekly_challenge_description',
-//       'type' => 'textarea',
-//       'instructions' => '',
-//       'required' => 0,
-//       'conditional_logic' => 0,
-//       'wrapper' => array (
-//         'width' => '',
-//         'class' => '',
-//         'id' => '',
-//       ),
-//       'default_value' => '',
-//       'placeholder' => '',
-//       'maxlength' => '',
-//       'rows' => '',
-//       'new_lines' => '',
-//     ),
-//     array (
-//       'key' => 'field_5bad80a0b287b',
-//       'label' => 'Weekly Challenge Hashtag',
-//       'name' => 'weekly_challenge_hashtag',
-//       'type' => 'text',
-//       'instructions' => '',
-//       'required' => 0,
-//       'conditional_logic' => 0,
-//       'wrapper' => array (
-//         'width' => '',
-//         'class' => '',
-//         'id' => '',
-//       ),
-//       'default_value' => '',
-//       'placeholder' => '',
-//       'prepend' => '',
-//       'append' => '',
-//       'maxlength' => '',
-//     ),
-//   ),
-//   'location' => array (
-//     array (
-//       array (
-//         'param' => 'page_template',
-//         'operator' => '==',
-//         'value' => 'page-templates/challenge.php',
-//       ),
-//     ),
-//   ),
-//   'menu_order' => 0,
-//   'position' => 'normal',
-//   'style' => 'default',
-//   'label_placement' => 'top',
-//   'instruction_placement' => 'label',
-//   'hide_on_screen' => '',
-//   'active' => 1,
-//   'description' => '',
-// ));
+//add acf stuff if you have ACF pro running (based on repeater field so you need pro) -- will remove option to edit it though which might be confusing
+if( function_exists('acf_add_local_field_group') ):
 
-// endif;
+acf_add_local_field_group(array (
+    'key' => 'group_5b562549618d1',
+    'title' => 'Vocabulary Builder',
+    'fields' => array (
+        array (
+            'key' => 'field_5b5625749e430',
+            'label' => 'Vocabulary Bank',
+            'name' => 'vocabulary_bank',
+            'type' => 'repeater',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array (
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'collapsed' => '',
+            'min' => 0,
+            'max' => 0,
+            'layout' => 'block',
+            'button_label' => 'Add a new word pair',
+            'sub_fields' => array (
+                array (
+                    'key' => 'field_5b5626ba63e37',
+                    'label' => 'Target Language Word',
+                    'name' => 'target_language_word',
+                    'type' => 'text',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => 0,
+                    'wrapper' => array (
+                        'width' => '50',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'default_value' => '',
+                    'placeholder' => '',
+                    'prepend' => '',
+                    'append' => '',
+                    'maxlength' => '',
+                ),
+                array (
+                    'key' => 'field_5b5625939e432',
+                    'label' => 'English Equivalent',
+                    'name' => 'english_equivalent',
+                    'type' => 'text',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => 0,
+                    'wrapper' => array (
+                        'width' => '50',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'default_value' => '',
+                    'placeholder' => '',
+                    'prepend' => '',
+                    'append' => '',
+                    'maxlength' => '',
+                ),
+            ),
+        ),
+    ),
+    'location' => array (
+        array (
+            array (
+                'param' => 'post_type',
+                'operator' => '==',
+                'value' => 'page',
+            ),
+        ),
+        array (
+            array (
+                'param' => 'post_type',
+                'operator' => '==',
+                'value' => 'part',
+            ),
+        ),
+        array (
+            array (
+                'param' => 'post_type',
+                'operator' => '==',
+                'value' => 'post',
+            ),
+        ),
+        array (
+            array (
+                'param' => 'post_type',
+                'operator' => '==',
+                'value' => 'front-matter',
+            ),
+        ),
+        array (
+            array (
+                'param' => 'post_type',
+                'operator' => '==',
+                'value' => 'back-matter',
+            ),
+        ),
+    ),
+    'menu_order' => 1,
+    'position' => 'normal',
+    'style' => 'default',
+    'label_placement' => 'top',
+    'instruction_placement' => 'label',
+    'hide_on_screen' => '',
+    'active' => 1,
+    'description' => '',
+));
+
+endif;
+

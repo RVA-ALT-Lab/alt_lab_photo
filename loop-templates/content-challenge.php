@@ -23,8 +23,8 @@
 
 		<?php get_the_tutorials();?>
 		<!--should be repeater field with title, concept, link -->
-
-
+		<?php echo get_the_vocab_words();?>
+		
 		<h2 id="challenges" class="magic-topics"></h2>
 		<div class="daily assignment">
 			<?php 
