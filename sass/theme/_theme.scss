@@ -196,6 +196,8 @@ p {
     font-weight: 100;
 }
 
+
+//challenges
 //tutorials and artists
 
 .tutorial {
@@ -257,6 +259,7 @@ p {
   margin-left: 0;
   padding-left: 0;
   padding-top: 0;
+  word-wrap: break-word;
 }
 
 .artist-img img {
@@ -266,7 +269,6 @@ p {
 }
 
 
-//challenges
 #challenges {
   margin-top: 70px;
 }
@@ -278,6 +280,28 @@ p {
     text-decoration: none;
 }
 
+.artist {
+  word-wrap: break-word;
+}
+
+
+.artist-img img{
+   box-shadow: 0px 0px 0px 0px $white;
+   transition: box-shadow 0.2s linear;
+   margin: 0.5em; 
+}
+.artist-img img:hover {
+  box-shadow: 0px 0px 0px 3px $red;
+}
+
+
+.challenge-sub span {
+  display: inline-block;
+  border-left: 1px solid $light-gray;
+  border-bottom: 1px solid $light-gray;
+  width: 25%;
+  padding: 5px;
+}
 
 //FOOTER 
 #wrapper-footer {

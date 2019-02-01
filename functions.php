@@ -172,16 +172,25 @@ function get_challenges($page, $tag){
       echo '<div class="submitted-work"><h3>Submitted Work</h3><ol>';
         foreach ($entries as $entry) {   
           $date = $entry['date_created'];  
-          $author = $entry['1.3'] . ' ' . $entry['1.6'];
-          $email = $entry['2'];
-          $album = $entry['3'];
-          $tag = $entry['5'];
-          echo '<li class="challenge-sub"><span class="author"><a href="mailto:' . $email . '">' . $author . '</a></span><span class="album"> <a href="' . $album . '">album link</a><span class="date"> ' . $date . '</span></li>';
+          $author = fieldThere($entry['1.3'] . ' ' . $entry['1.6']);
+          $email = fieldThere($entry['2']);
+          $album = fieldThere($entry['3']);
+          $tag = fieldThere($entry['5']);
+          $insta = fieldThere($entry['6']);
+          echo '<li class="challenge-sub"><span class="author"><a href="mailto:' . $email . '">' . $author . '</a></span><span class="album"> <a href="' . $album . '">album link</a></span><span class="date"> ' . $date . '</span><span class="insta"><a href="https://instagram.com/' . $insta .' ">' . $insta . '</a></span></li>';
     }
       echo '</ol></div>';
   }
 }
 
+
+function fieldThere($field){
+  if($field){
+    return $field;
+  } else {
+    return 'not submitted';
+  }
+}
 
 function acf_fetch_instagram_shortcode(){
   global $post;
@@ -298,7 +307,8 @@ function get_the_artists(){
 
           // display a sub field value
           echo '<div class="col-md-4 artist">';
-          echo '<div class="artist-img"><img src="' . get_sub_field('artist_image') . '" alt="A photo of '. get_sub_field('artist_name') .'."></div>';
+          echo '<a href="' . get_sub_field('main_link') . '">';
+          echo '<div class="artist-img"><img src="' . get_sub_field('artist_image') . '" alt="A photo of '. get_sub_field('artist_name') .'."></div></a>';
           echo '<h3>' . get_sub_field('artist_name') . '</h3>';
           echo  get_sub_field('artist_description');
           echo '</div>';
@@ -349,6 +359,7 @@ function collapseButton($title){
 
 function get_the_vocab_words(){
     global $post;
+    $html = '';
     if( have_rows('vocabulary_bank', $post->ID) ):
         $html = '<h2 class="alt-dictionary-title magic-topics">Terms</h2><div class="row tutorial-box"><div class="alt-dictionary col-md-9">';
     while ( have_rows('vocabulary_bank') ) : the_row();
@@ -393,14 +404,14 @@ acf_add_local_field_group(array (
             'sub_fields' => array (
                 array (
                     'key' => 'field_5b5626ba63e37',
-                    'label' => 'Target Language Word',
+                    'label' => 'Topic Word',
                     'name' => 'target_language_word',
                     'type' => 'text',
                     'instructions' => '',
                     'required' => 0,
                     'conditional_logic' => 0,
                     'wrapper' => array (
-                        'width' => '50',
+                        'width' => '30',
                         'class' => '',
                         'id' => '',
                     ),
@@ -412,14 +423,14 @@ acf_add_local_field_group(array (
                 ),
                 array (
                     'key' => 'field_5b5625939e432',
-                    'label' => 'English Equivalent',
+                    'label' => 'Definition',
                     'name' => 'english_equivalent',
                     'type' => 'text',
                     'instructions' => '',
                     'required' => 0,
                     'conditional_logic' => 0,
                     'wrapper' => array (
-                        'width' => '50',
+                        'width' => '70',
                         'class' => '',
                         'id' => '',
                     ),
