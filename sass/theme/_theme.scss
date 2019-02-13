@@ -141,8 +141,12 @@ article a {
 	text-decoration: underline;
 }
 
-body, p, h1, h2, h3, h4, h5 {
+body, p, h1, h2, h4, h5 {
 	font-family: 'Roboto', sans-serif;
+}
+
+h3 {
+  font-family: 'Oswald', sans-serif;
 }
 
 #secondary img, article img, figure, img, img.wp-post-image {

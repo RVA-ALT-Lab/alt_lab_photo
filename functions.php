@@ -172,17 +172,27 @@ function get_challenges($page, $tag){
       echo '<div class="submitted-work"><h3>Submitted Work</h3><ol>';
         foreach ($entries as $entry) {   
           $date = $entry['date_created'];  
-          $author = fieldThere($entry['1.3'] . ' ' . $entry['1.6']);
-          $email = fieldThere($entry['2']);
+          if (current_user_can('administrator')){
+            $author = fieldThere($entry['1.3'] . ' ' . $entry['1.6']);
+            $email = fieldThere($entry['2']);
+          } else {
+            $author = 'A. Artist';
+            $email = 'fake@email.com';
+          }
           $album = fieldThere($entry['3']);
           $tag = fieldThere($entry['5']);
-          $insta = fieldThere($entry['6']);
+          $insta = clean_insta(fieldThere($entry['6']));
           echo '<li class="challenge-sub"><span class="author"><a href="mailto:' . $email . '">' . $author . '</a></span><span class="album"> <a href="' . $album . '">album link</a></span><span class="date"> ' . $date . '</span><span class="insta"><a href="https://instagram.com/' . $insta .' ">' . $insta . '</a></span></li>';
     }
       echo '</ol></div>';
   }
 }
 
+
+function clean_insta($insta){
+  $clean_insta = preg_replace('/@/', '', $insta);
+  return $clean_insta;
+}
 
 function fieldThere($field){
   if($field){
@@ -376,8 +386,6 @@ function get_the_vocab_words(){
 
 
 
-
-
 //add acf stuff if you have ACF pro running (based on repeater field so you need pro) -- will remove option to edit it though which might be confusing
 if( function_exists('acf_add_local_field_group') ):
 
@@ -493,5 +501,4 @@ acf_add_local_field_group(array (
 ));
 
 endif;
-
 

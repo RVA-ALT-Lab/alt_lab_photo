@@ -35,9 +35,7 @@
 			 ?>
 			<?php echo do_shortcode('[elfsight_instagram_feed source="' . acf_fetch_daily_challenge_hashtag_tag() . '" limit="16" widget_title=""]')?>
 				 <?php 
-					if (current_user_can('administrator')){
-						get_challenges(get_the_title(), $daily_tag);
-					}
+						get_challenges(get_the_title(), $daily_tag);				
 					?>
 		</div>
 
@@ -55,9 +53,7 @@
 			<?php echo do_shortcode('[elfsight_instagram_feed source="' . acf_fetch_weekly_challenge_hashtag() . '" limit="16" widget_title=""]')?>				
 					 
 				<?php 
-					if (current_user_can('administrator')){
 						get_challenges(get_the_title(), $weekly_tag);
-					}
 					?>
 		</div>
 		<?php
