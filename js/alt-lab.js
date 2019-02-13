@@ -67,3 +67,45 @@ jQuery('#submissionModal').on('show.bs.modal', function (event) {
 jQuery('#submissionModal').on('hide.bs.modal', function () {
   location.reload(true);
 });
+
+
+//check for 404 on album entry
+
+  window.onload = function() {
+    
+    var album = document.getElementById('input_1_3');
+
+    //if (album){
+             makeButton();
+
+     // album.addEventListener("onEdit", urlExists);
+      album.addEventListener('input',function(e){
+      checkUrl(album.value);
+      },false);
+
+   // }
+  };
+
+  function makeButton (){
+    if (document.getElementById('testing-button') === null){     
+        jQuery("#input_1_3").after('<div id="testing-button"></div>');
+      }
+      
+  }
+
+
+
+
+function checkUrl(url){
+  var goo = url.includes('photos.app.goo.gl',0)
+  var share = url.includes('share',0)
+  var urlDisplay = document.getElementById('testing-button')
+  if (goo === true || share === true ){
+    urlDisplay.classList.add('victory')
+    urlDisplay.classList.remove('revisit')
+  } else {
+    urlDisplay.classList.remove('victory')
+    urlDisplay.classList.add('revisit')
+  }
+}
+   

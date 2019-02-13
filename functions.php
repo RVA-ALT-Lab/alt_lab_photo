@@ -376,6 +376,8 @@ function get_the_vocab_words(){
 
 
 
+
+
 //add acf stuff if you have ACF pro running (based on repeater field so you need pro) -- will remove option to edit it though which might be confusing
 if( function_exists('acf_add_local_field_group') ):
 
@@ -491,4 +493,5 @@ acf_add_local_field_group(array (
 ));
 
 endif;
+
 
