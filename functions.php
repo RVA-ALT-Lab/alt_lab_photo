@@ -75,7 +75,7 @@ require get_template_directory() . '/inc/editor.php';
 add_action('wp_enqueue_scripts', 'alt_lab_scripts');
 function alt_lab_scripts() {
 	$query_args = array(
-		'family' => 'Roboto:100,300,400,700|Oswald:400,500,700|Roboto+Mono:100,400',
+		'family' => 'Oswald:400,500,700|Roboto+Regular:100,300',
 		'subset' => 'latin,latin-ext',
 	);
 	wp_enqueue_style ( 'google_fonts', add_query_arg( $query_args, "//fonts.googleapis.com/css" ), array(), null );
@@ -169,7 +169,7 @@ function get_challenges($page, $tag){
   $entries  = GFAPI::get_entries( 1, $search_criteria );
   if ( !empty($entries) ){
  // var_dump($entries);
-      echo '<div class="submitted-work"><h3>Submitted Work</h3><ol>';
+      echo '<div class="submitted-work col-md-12"><h3>Submitted Work</h3><ol>';
         foreach ($entries as $entry) {   
           $date = $entry['date_created'];  
           if (current_user_can('administrator')){
@@ -221,8 +221,8 @@ function acf_fetch_daily_challenge_description($tag){
   $daily_challenge_description = get_field('daily_challenge_description');
 
     if( $daily_challenge_description) {      
-      $html .= '<div class="daily-description challenge">' . $daily_challenge_description . '</div>';  
-      $html .= '<div class="challenge-hashtag">The Instagram hashtag for this assignment is <a class="main-hashtag" href="https://www.instagram.com/explore/tags/' . $tag . '">#' . $tag . '</a>';  
+      $html .= '<div class="row"><div class="daily-description challenge col-md-6">' . $daily_challenge_description . '</div>';  
+      $html .= '<div class="challenge-hashtag col-md-6"><h4>The Instagram hashtag for this assignment is</h4> <a class="main-hashtag" href="https://www.instagram.com/explore/tags/' . $tag . '">#' . $tag . '</a></div>';  
      return $html;    
     }
 
@@ -316,12 +316,12 @@ function get_the_artists(){
       while ( have_rows('artists') ) : the_row();
 
           // display a sub field value
-          echo '<div class="col-md-4 artist">';
+          echo '<div class="col-md-4 artist"><div class="the-artist">';
           echo '<a href="' . get_sub_field('main_link') . '">';
           echo '<div class="artist-img"><img src="' . get_sub_field('artist_image') . '" alt="A photo of '. get_sub_field('artist_name') .'."></div></a>';
           echo '<h3>' . get_sub_field('artist_name') . '</h3>';
           echo  get_sub_field('artist_description');
-          echo '</div>';
+          echo '</div></div>';
 
       endwhile;
     echo '</div>';
@@ -344,8 +344,7 @@ function get_the_tutorials(){
           $clean_title = sanitize_title_with_dashes(get_sub_field('tutorial_title'));
           // display a sub field value
           echo '<div class="tutorial col-md-9">';
-          echo '<div class="tutorial-icon"></div>';
-          echo collapseButton(get_sub_field('tutorial_title'));
+          echo collapse_button(get_sub_field('tutorial_title'));
           echo  '<div class="collapse" id="' . $clean_title . '">' . get_sub_field('tutorial_description') . '</div>';
           echo '</div>';
 
@@ -360,9 +359,9 @@ function get_the_tutorials(){
 }
 
 
-function collapseButton($title){
+function collapse_button($title){
   $clean_title = sanitize_title_with_dashes($title);
-  return '<a data-toggle="collapse" class="tutorial-title" href="#' . $clean_title . '" role="button" aria-expanded="false" aria-controls="' . $clean_title . '"><h3>' . $title . ' </h3></a>';
+  return '<a data-toggle="collapse" class="tutorial-title" href="#' . $clean_title . '" role="button" aria-expanded="false" aria-controls="' . $clean_title . '"><div class="tutorial-icon"></div><h3>' . $title . ' </h3></a>';
 }
 
 //Vocab

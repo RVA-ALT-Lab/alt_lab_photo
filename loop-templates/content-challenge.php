@@ -25,11 +25,11 @@
 		<!--should be repeater field with title, concept, link -->
 		<?php echo get_the_vocab_words();?>
 		
-		<h2 id="challenges" class="magic-topics"></h2>
-		<div class="daily assignment">
-			<?php 
-				$daily_tag = acf_fetch_daily_challenge_hashtag();
-				echo acf_fetch_daily_challenge_description($daily_tag);?>
+		<h2 id="challenges" class="magic-topics">&nbsp;</h2>
+		<div class="daily assignment row">
+				<?php 
+					$daily_tag = acf_fetch_daily_challenge_hashtag();
+					echo acf_fetch_daily_challenge_description($daily_tag);?>
 			<?php		 
 			 	echo challenge_submission_structure($daily_tag);
 			 ?>
@@ -39,22 +39,6 @@
 					?>
 		</div>
 
-
-		<div class="weekly assignment">		
-			<?php 
-				$weekly_tag = acf_fetch_weekly_challenge_hashtag();
-				echo acf_fetch_weekly_challenge_description($weekly_tag);
-			?>
-			
-			<?php 
-				echo challenge_submission_structure($weekly_tag);
-			?>
-
-			<?php echo do_shortcode('[elfsight_instagram_feed source="' . acf_fetch_weekly_challenge_hashtag() . '" limit="16" widget_title=""]')?>				
-					 
-				<?php 
-						get_challenges(get_the_title(), $weekly_tag);
-					?>
 		</div>
 		<?php
 		wp_link_pages( array(

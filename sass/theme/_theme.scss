@@ -11,7 +11,7 @@
 }
 
 .navbar-brand {
-  font-family: 'Roboto Mono', sans-serif;
+  font-family: 'PT Mono', sans-serif;
   font-weight: bold;
   text-transform: uppercase;
    position: relative;
@@ -56,7 +56,7 @@
 //prevent default fade to non-accessible on pages that are not the active page
 .navbar-dark .navbar-nav .nav-link {
   color: $white;
-  font-family: 'Roboto Mono', mono;
+  font-family: 'PT Mono', mono;
   font-weight: 300;
   font-size: 1.2em;
 }
@@ -141,13 +141,16 @@ article a {
 	text-decoration: underline;
 }
 
-body, p, h1, h2, h4, h5 {
-	font-family: 'Roboto', sans-serif;
+body, p {
+  font-family: 'Roboto Regular', sans-serif;
+  font-size: 1em;
+  line-height: 1.4em;
 }
 
-h3 {
-  font-family: 'Oswald', sans-serif;
+h1, h2, h3, h4, h5 {
+	font-family: 'Oswald', sans-serif;
 }
+
 
 #secondary img, article img, figure, img, img.wp-post-image {
 	margin-bottom: 1em;
@@ -184,7 +187,7 @@ p {
 }
 
 .btn-photo{
-    padding: 5px 10px;
+    padding: 15px 0;
     display: block;
     background: #bd091a;
     color: #fff;
@@ -195,13 +198,23 @@ p {
     -webkit-transition: all .3s;
     transition: all .3s;
     margin: 15px 0;
-    font-size: 1em;
+    width: 350px;
+    margin: 30px auto;
+    cursor: pointer;
   }
+
+.btn-photo:hover {
+  background-color: $dark-gray;
+}
 
   #closer {
     text-align: right;
     padding: 10px;
     font-weight: 100;
+}
+
+.submitted-work {
+  margin-top: 60px;
 }
 
 
@@ -213,7 +226,8 @@ p {
 }
 
 .tutorial {
-    border-bottom: .1rem solid #e0e0e0;    
+  padding-bottom: 10px;
+  border-bottom: .1rem solid #e0e0e0;    
 }
 
 .tutorial-icon {
@@ -221,25 +235,31 @@ p {
   height: 2rem;
   border-radius: 50%;
   display: inline-block;
-  //background-color: $red;
   border: 2px solid $red;
   margin-right: 20px;
-  margin-top: 20px;
   vertical-align: top;
+  padding: 10px;
 }
 
 .tutorial-title {
     letter-spacing: .01785714em;
-    font-family: 'Google Sans',Roboto,Arial,sans-serif;
+    font-family: 'PT Mono',sans-serif;
     font-size: 1.4rem;
     font-weight: 500;
     line-height: 2rem;
     color: #3c4043;
     display: inline-block;
-    max-width: 80%;
+    padding-left: 50px;
     margin-top: 20px;
      -webkit-transition: all .5s; /* Safari */
-  transition: all .5s;
+    transition: all .5s;
+    width: 100%;
+}
+
+.tutorial-title[aria-expanded="true"] {
+  background-color: #fff;
+  margin-left: 50px;
+  padding: 40px 20px;
 }
 
 .tutorial-title h3 {
@@ -267,11 +287,30 @@ p {
   margin: 0 auto;
 }
 
-.artist p, .tutorial p {
+.tutorial {
+  transition: all .5s;
+}
+
+.tutorial p{
+  background-color: #fff;
+  margin-left: 50px;
+  padding: 0 40px 50px 70px;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.the-artist {
+    background-color: #fff;
+    padding: 40px 20px;
+    height: 100%;
+}
+
+.artist p {
   margin-left: 0;
   padding-left: 0;
   padding-top: 0;
   word-wrap: break-word;
+  background-color: #fff;
 }
 
 .artist-img img {
@@ -336,6 +375,16 @@ p {
   color: #fff;
 }
 
+
+.challenge-hashtag {
+    padding: 1em .4em;
+    text-align: center;
+    border: 1px solid $light-gray;
+}
+
+.main-hashtag {
+      margin-top: 30px;
+}
 
 //FOOTER 
 #wrapper-footer {
