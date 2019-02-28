@@ -30,15 +30,31 @@
 				<?php 
 					$daily_tag = acf_fetch_daily_challenge_hashtag();
 					echo acf_fetch_daily_challenge_description($daily_tag);?>
-			<?php		 
-			 	echo challenge_submission_structure($daily_tag);
-			 ?>
-			<?php echo do_shortcode('[elfsight_instagram_feed source="' . acf_fetch_daily_challenge_hashtag_tag() . '" limit="16" widget_title=""]')?>
+				<?php		 
+				 	echo challenge_submission_structure($daily_tag);
+				 ?>
+				<?php echo do_shortcode('[elfsight_instagram_feed source="' . acf_fetch_daily_challenge_hashtag_tag() . '" limit="32" widget_title=""]')?>
 				 <?php 
 						get_challenges(get_the_title(), $daily_tag);				
 					?>
 		</div>
+			<div class="daily assignment row">
+				<div class="weekly assignment">	
 
+			<?php 
+				$weekly_tag = acf_fetch_weekly_challenge_hashtag();
+				echo acf_fetch_weekly_challenge_description($weekly_tag);
+			?>
+			
+			<?php 
+				echo challenge_submission_structure($weekly_tag);
+			?>
+
+			<?php echo do_shortcode('[elfsight_instagram_feed source="' . acf_fetch_weekly_challenge_hashtag() . '" limit="32" widget_title=""]')?>				
+					 
+				<?php 
+						get_challenges(get_the_title(), $weekly_tag);
+					?>
 		</div>
 		<?php
 		wp_link_pages( array(
