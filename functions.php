@@ -156,6 +156,7 @@ function bannerMaker(){
 function get_challenges($page, $tag){
     $search_criteria = array(
       'status'        => 'active',
+      'key' => 'date_created', 
       'field_filters' => array(
           'mode' => 'any',
           array(
@@ -165,8 +166,12 @@ function get_challenges($page, $tag){
       )
   );
 
-    //'key' => '1', 'operator' => 'contains', 'value' => 'Steve'
-  $entries  = GFAPI::get_entries( 1, $search_criteria );
+   $sorting = array(
+    'key' => "date_created", 
+    'direction' => "ASC", 
+    "type" => "info");        
+
+  $entries  = GFAPI::get_entries( 1, $search_criteria, $sorting );
   if ( !empty($entries) ){
  // var_dump($entries);
       echo '<div class="submitted-work col-md-12"><h3>Submitted Work</h3><ol>';
@@ -175,14 +180,14 @@ function get_challenges($page, $tag){
           if (current_user_can('administrator')){
             $author = fieldThere($entry['1.3'] . ' ' . $entry['1.6']);
             $email = fieldThere($entry['2']);
+            $author_link = '<span class="author"><a href="mailto:' . $email . '">' . $author . ' <i class="fa fa-envelope-o" aria-hidden="true"></i></a></span>';
           } else {
-            $author = 'A. Artist';
-            $email = 'fake@email.com';
+            $author_link = '';           
           }
           $album = fieldThere($entry['3']);
           $tag = fieldThere($entry['5']);
           $insta = clean_insta(fieldThere($entry['6']));
-          echo '<li class="challenge-sub"><span class="author"><a href="mailto:' . $email . '">' . $author . '</a></span><span class="album"> <a href="' . $album . '">album link</a></span><span class="date"> ' . $date . '</span><span class="insta"><a href="https://instagram.com/' . $insta .' ">' . $insta . '</a></span></li>';
+          echo '<li class="challenge-sub">' . $author_link . '<span class="album"> <a href="' . $album . '">album link <i class="fa fa-external-link" aria-hidden="true"></i></a></span><span class="date"> ' . $date . '</span><span class="insta"><a href="https://instagram.com/' . $insta .' "><i class="fa fa-instagram" aria-hidden="true"></i> ' . $insta . '</a></span></li>';
     }
       echo '</ol></div>';
   }
