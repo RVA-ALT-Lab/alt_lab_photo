@@ -74,15 +74,15 @@ require get_template_directory() . '/inc/editor.php';
 //ADD FONTS and VCU Brand Bar
 add_action('wp_enqueue_scripts', 'alt_lab_scripts');
 function alt_lab_scripts() {
-	$query_args = array(
-		'family' => 'Oswald:400,500,700|Roboto+Regular:100,300',
-		'subset' => 'latin,latin-ext',
-	);
-	wp_enqueue_style ( 'google_fonts', add_query_arg( $query_args, "//fonts.googleapis.com/css" ), array(), null );
+  $query_args = array(
+    'family' => 'Oswald:400,500,700|Roboto+Regular:100,300',
+    'subset' => 'latin,latin-ext',
+  );
+  wp_enqueue_style ( 'google_fonts', add_query_arg( $query_args, "//fonts.googleapis.com/css" ), array(), null );
 
-	wp_enqueue_script( 'vcu_brand_bar', 'https:///branding.vcu.edu/bar/academic/latest.js', array(), '1.1.1', true );
+  wp_enqueue_script( 'vcu_brand_bar', 'https:///branding.vcu.edu/bar/academic/latest.js', array(), '1.1.1', true );
 
-	wp_enqueue_script( 'alt_lab_js', get_template_directory_uri() . '/js/alt-lab.js', array(), '1.1.1', true );
+  wp_enqueue_script( 'alt_lab_js', get_template_directory_uri() . '/js/alt-lab.js', array(), '1.1.1', true );
     }
 
 //add footer widget areas
@@ -139,8 +139,8 @@ if ( function_exists('register_sidebar') )
 
 
 function bannerMaker(){
-	global $post;
-	 if ( get_the_post_thumbnail_url( $post->ID ) ) {
+  global $post;
+   if ( get_the_post_thumbnail_url( $post->ID ) ) {
       //$thumbnail_id = get_post_thumbnail_id( $post->ID );
       $thumb_url = get_the_post_thumbnail_url($post->ID);
       //$alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
@@ -168,10 +168,12 @@ function get_challenges($page, $tag){
 
    $sorting = array(
     'key' => "date_created", 
-    'direction' => "ASC", 
-    "type" => "info");        
+    'direction' => "ASC",
+    "type" => "info");   
+    $paging          = array( 'offset' => 0, 'page_size' => 55 );
+     
 
-  $entries  = GFAPI::get_entries( 1, $search_criteria, $sorting );
+  $entries  = GFAPI::get_entries( 1, $search_criteria, $sorting, $paging );
   if ( !empty($entries) ){
  // var_dump($entries);
       echo '<div class="submitted-work col-md-12"><h3>Submitted Work</h3><ol>';
